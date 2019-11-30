@@ -1,0 +1,45 @@
+创建App:
+
+在django中 一个app就代表一个功能模块  比如 会有登录注册  会有编辑文章  算是不同的app
+
+创建app的命令 python manage.py startapp article 就是创建一个article的app
+
+在创建app之后 还需要对app进行相关的注册 让项目知道已经有了这个app(模块)
+
+注册是在项目的settings文件下进行的  在Installed_apps 中进行填写
+
+然后再进行配置  让项目可以找到相关的app
+
+配置是在项目的urls.py文件下面
+比如
+path(‘article/’,include(‘article.urls’,namespace=’article’))
+是把命令下发到article下面，然后再在article中进行执行
+
+
+编写Model模型
+django框架关注的是模型、模板、视图  称为MTV模式
+简单来说就是Model存取数据，View决定需要调取哪些数据，而Template则负责将调取出的数据以合理的方式展现出来。
+
+外键：
+数据库中有各种表，有时候是几张表相互关联，外键就是用来表示表与表之间的关系的。
+Foreignkey用来表示一对多的关系  OneToOneField用来表示一对一的关系  ManyToMany用来表示多对多的关系。
+
+Meta内部类：
+meta类是为模型提供元数据。元数据就是不是字段的数据，比如表名db_table、排序选项ordering等.
+
+数据迁移：
+编写好Model之后就要进行数据迁移。数据迁移是Django对模型做出的改变更改传递到数据库中的方式。只要是对数据库和模型进行了操作就要进行数据迁移。
+
+主要命令：python manage.py makemigrations  Django会检测模型的改变，然后把修改的部分存储为一次迁移。
+python manage.py  migrate
+
+视图：对数据库进行操作的代码，然后进行展示，这部分代码是视图
+
+一个视图是一个简单的函数，要做的只有两个事情1：返回一个包含被请求页面内容的HttpResponse对象  2：抛出一个异常
+
+有了视图函数，还需要配置URLcomfs，将用户请求的URL链接关联起来。把URL映射到视图中。
+
+
+
+网站后台
+网站管理后台，用于管理网站的操作平台，在开发前期，缺少真实的用户数据和完整的测试环境，因此要频繁的修改数据。
