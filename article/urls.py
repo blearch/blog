@@ -1,4 +1,4 @@
-from . import views
+from article import views
 
 from django.urls import path
 # 和urls 里面的namespace相对应 两者必须要有  否则会报错
